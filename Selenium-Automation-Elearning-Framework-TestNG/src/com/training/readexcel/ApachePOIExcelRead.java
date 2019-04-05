@@ -19,7 +19,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *      access.
  */
 public class ApachePOIExcelRead {
-	public  String [][] getExcelContent(String fileName) {
+	public  String [][] getExcelContent(String fileName,String SheetName) {
 		int rowCount =0; 
 		String [][] list1 = null; 
 		
@@ -30,8 +30,10 @@ public class ApachePOIExcelRead {
 			// Create Workbook instance holding reference to .xlsx file
 			XSSFWorkbook workbook = new XSSFWorkbook(file);
 
+			String sheetname = null;
 			// Get first/desired sheet from the workbook
-			XSSFSheet sheet = workbook.getSheetAt(0);
+			XSSFSheet sheet = workbook.getSheet(SheetName);
+			//XSSFSheet sheet = workbook.getSheetAt(0);
 			
 			int rowTotal = sheet.getLastRowNum();
 
@@ -90,8 +92,8 @@ public class ApachePOIExcelRead {
 
 	public static void main(String[] args) {
 		String fileName = "C:/Retail poject/Testdata.xlsx";
-		
-		for(String [] temp : new ApachePOIExcelRead().getExcelContent(fileName)){
+		String SheetName="Sheet1";
+		for(String [] temp : new ApachePOIExcelRead().getExcelContent(fileName,SheetName)){
 			for(String  tt : temp){
 				System.out.println(tt);
 			}

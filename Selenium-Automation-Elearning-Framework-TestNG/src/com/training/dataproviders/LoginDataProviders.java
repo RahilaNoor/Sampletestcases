@@ -19,9 +19,15 @@ public class LoginDataProviders {
 		Object[][] result = new Object[list.size()][]; 
 		int count = 0; 
 		for(LoginBean temp : list){
-			Object[]  obj = new Object[2]; 
-			obj[0] = temp.getUserName(); 
-			obj[1] = temp.getPassword(); 
+			Object[]  obj = new Object[6]; 
+			//obj[0] = temp.getUserName(); 
+			//obj[1] = temp.getPassword();
+			obj[0] = temp.getproductname(); 
+			obj[1] = temp.getMetatagtitle(); 
+			obj[2] = temp.getModel(); 
+			obj[3] = temp.getprice(); 
+			obj[4] = temp.getQuantity(); 
+			obj[5] = temp.getCategories(); 
 			
 			result[count ++] = obj; 
 		}
@@ -33,7 +39,20 @@ public class LoginDataProviders {
 	@DataProvider(name = "excel-inputs")
 	public Object[][] getExcelData(){
 		String fileName ="C:/Retail poject/Testdata.xlsx"; 
-		return new ApachePOIExcelRead().getExcelContent(fileName); 
+		String SheetName="Sheet1";
+		return new ApachePOIExcelRead().getExcelContent(fileName,SheetName); 
+	}
+	@DataProvider(name = "excel-inputs1")
+	public Object[][] getExcelData1(){
+		String fileName ="C:/Retail poject/Testdata.xlsx"; 
+		String SheetName="Sheet2";
+		return new ApachePOIExcelRead().getExcelContent(fileName,SheetName); 
+	}
+	@DataProvider(name = "excel-inputs2")
+	public Object[][] getExcelData2(){
+		String fileName ="C:/Retail poject/Testdata.xlsx"; 
+		String SheetName="Sheet3";
+		return new ApachePOIExcelRead().getExcelContent(fileName,SheetName); 
 	}
 	
 	@DataProvider(name = "xls-inputs")
